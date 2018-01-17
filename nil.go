@@ -1,6 +1,8 @@
 package boundary
 
-import "errors"
+import (
+	"errors"
+)
 
 var ( // all of these are initialized to nil
 	ip *int //any pointer starts out as nil
@@ -62,4 +64,16 @@ func updateMapSeemsFixed(m, other map[string]string) {
 	for k, v := range other {
 		m[k] = v
 	}
+}
+
+func describe(n int) (description string) {
+	switch {
+	case n == 1:
+		description = "one"
+	case n == 2, n == 3, n == 5, n == 7, n == 11:
+		description = "this is a prime"
+	case 13 <= n && n < 20:
+		description = "this is a teen"
+	}
+	return description
 }
