@@ -37,8 +37,7 @@ func mostCommonN(a []string, n int) []string {
 	return uniques[:n]
 	// will cause runtime error if n > len(a) or n < 0; n==0 will give you an empty slice, which may be correct but is nonsensical.
 	//further, this output is nondeterminstic, because map iteration order in golang is arbitrary.
-	// i.e, mostCommonN([]string{"a", "b", "c", "d"}, 2) could give you any possible pair.
-	// this is bad!
+	// i.e, mostCommonN([]string{"a", "b", "c", "d"}, 2) could give you any possible pair!
 }
 
 func mostCommonNFixed(a []string, n int) ([]string, error) {

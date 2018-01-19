@@ -30,11 +30,10 @@ func Test_get(t *testing.T) {
 	_, err = get("")
 	assert.Error(t, err)
 
-	t.Run("panic", func(t *testing.T) { //final boundary condition! this will cause a panic!
-
+	t.Run("panic", func(t *testing.T) {
 		defer recoverAndFail(t)
 		manager = &Manager{}
-		_, err = get("")
+		_, err = get("") // this will panic!
 		assert.Error(t, err)
 	})
 }
@@ -50,7 +49,7 @@ func Test_update(t *testing.T) {
 	var m map[string]string
 	t.Run("panic", func(t *testing.T) {
 		defer recoverAndFail(t)
-		updateMap(m, bar) // this will cause a panic!
+		updateMap(m, bar) // this will panic!
 		assert.Equal(t, bar, m)
 	})
 }
@@ -65,6 +64,6 @@ func Test_updateSeemsFixed(t *testing.T) {
 
 	var m map[string]string
 	updateMapSeemsFixed(m, bar)
-	assert.Equal(t, m, bar, "call to make(map[string]string) reassigned in the inner scope")
+	assert.Equal(t, bar, m, "call to make(map[string]string) reassigned in the inner scope")
 
 }
